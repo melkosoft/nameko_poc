@@ -8,7 +8,8 @@ load_dotenv(dotenv_path="{}/.env".format(current_dir))
 
 
 class TimeService:
-    name = "db_time_service"
+   #name = "db_time_service"
+    name = os.environ.get('DB_TIME_SERVICE_NAME')
     conn = PgService(os.getenv('DSN'))
 
     @rpc
