@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: db.worker2
+  name: db.worker2
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: db.worker2
+    spec:
+      containers:
+      - args:
+        - /bin/bash
+        - run.sh
+        image: nameko/db.worker
+        name: nameko.db.worker2
+        env:
+        - name: DB_TIME_SERVICE_NAME
+          value: "db_time_service2"
+        resources: {}
+      restartPolicy: Always
+status: {}
